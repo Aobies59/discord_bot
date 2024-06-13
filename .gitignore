@@ -2,4 +2,4 @@ __pycache__/*
 .venv/*
 token.txt
 logs/*.txt
-members.csv
+data/*
