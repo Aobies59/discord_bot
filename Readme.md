@@ -85,3 +85,4 @@ disconnect <user>
 ```bash
 role <user> <role>
 ```
+> User must be cached, so it must have been connected to a voice channel at least once while the bot was running
