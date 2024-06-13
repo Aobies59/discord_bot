@@ -3,6 +3,7 @@
 Pretty simple bot for testing purposes. It can be controlled from the terminal for some basic commands.
 
 #### What's needed:
+> This section is outdated. It will be updated soon, meanwhile check *global_variables.py* for the new names of global variables
 
 > All global variables are stored in *global_variables.py*
 
