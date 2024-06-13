@@ -33,6 +33,9 @@ def get_id(member_name: str) -> int | None:
         with open(MEMBERS_FILENAME, "r") as members_file:
             cached_members = members_file.readlines()
     for member in cached_members:
+        split_member = member.split(';')
+        if len(split_member) != 2:
+            continue
         if member_name == member.split(';')[1].strip():
             return int(member.split(';')[0])
     return None
@@ -47,5 +50,5 @@ def add_member(member_name: str, member_id: int) -> int:
 
 def cache_members(client: discord.Client) -> int:
     for member in client.get_all_members():
-        add_member(member_name=member.name, member_id=member.id)  # add_member already check if member with that id is cached
+        add_member(member_name=member.name, member_id=member.id)  # add_member already checks if member with that id is cached
     return 0

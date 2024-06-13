@@ -1,6 +1,6 @@
 #!/bin/python
 import asyncio
-from clients import ConsoleClient
+from client import ConsoleClient
 from global_variables import JARRON_ID, TOKEN_FILENAME, BOT_CHANNEL_ID
 from utils import init_logs, log
 
@@ -19,6 +19,9 @@ async def main():
         await console_client.start(token)
     except KeyboardInterrupt:
         await console_client.close()
+    except Exception as e:
+        await console_client.close()
+        log(f'Client stopped by unexpected {type(e).__name__}: {e}')
     finally:
         await console_client.close()
 

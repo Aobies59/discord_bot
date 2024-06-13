@@ -23,7 +23,7 @@ Once you have everything in **#What's needed**, you only need the following code
 ```python
 #!/bin/python
 import asyncio
-from clients import ConsoleClient
+from client import ConsoleClient
 from global_variables import JARRON_ID, TOKEN_FILENAME, BOT_CHANNEL_ID
 from utils import init_logs, log
 
