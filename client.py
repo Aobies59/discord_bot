@@ -1,7 +1,8 @@
 import discord
 from utils import log, divide_string_by_first_space, clean_logs, equalize_len
 import aioconsole
-from global_variables import MEMBERS_FILENAME, JARRON_ID
+from global_variables import MEMBERS_FILENAME, MAIN_USER
+from private_global_variables import JARRON_ID
 from cache import get_id, cache_members
 
 class ConsoleClient(discord.Client):
@@ -46,6 +47,9 @@ class ConsoleClient(discord.Client):
         return f'Sent message: "{message.replace('\n', '\t').strip()}"'
             
     async def disconnect_member(self, member_name):
+        if member_name == '':
+            member_name = MAIN_USER
+
         member_to_disconnect = self.get_connected_member(member_name=member_name)
 
         if member_to_disconnect is None:
@@ -114,7 +118,7 @@ class ConsoleClient(discord.Client):
         if before.channel is None and after.channel is not None:
             try:
                 cache_members(self)
-                log(f'cache - Connection of member {member.name} triggered cache of members')
+                log(f'{equalize_len('cache')} - Connection of member "{member.name}" triggered member caching')
             except Exception as e:
-                log(f'Failed to cache members, {type(e)}: {e}')
+                log(f'{equalize_len('cache')} - Unexpected error {type(e)}: {e}')
 

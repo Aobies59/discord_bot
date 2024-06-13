@@ -1,7 +1,8 @@
 #!/bin/python
 import asyncio
 from client import ConsoleClient
-from global_variables import JARRON_ID, TOKEN_FILENAME, BOT_CHANNEL_ID
+from global_variables import TOKEN_FILENAME
+from private_global_variables import JARRON_ID, BOT_CHANNEL_ID
 from utils import init_logs, log
 
 
