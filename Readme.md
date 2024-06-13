@@ -6,6 +6,11 @@ Pretty simple bot for testing purposes. It can be controlled from the terminal f
 
 > All global variables are stored in *global_variables.py*
 
+- To clone this repository:
+```bash
+git clone https://github.com/Aobies59/discord_bot
+cd discord_bot
+```
 - A discord bot token, to be stored in *token.txt*
 - The id of the discord server the bot will run in, to be stored in `JARRON_ID` (don't ask why)
 - The id of the bot channel in that discord server, to be stored in `BOT_CHANNEL_ID`. The bot will send messages in that channel.
