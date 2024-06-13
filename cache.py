@@ -16,7 +16,7 @@ def is_member_cached(member_name: str = None, member_id: int = None) -> bool:
         member_getter = str(member_id)
     elif member_name is not None:
         split_index = 1
-        member_getter = member_name.strip()
+        member_getter = member_name.strip().lower()
 
     with members_file_lock:
         with open(MEMBERS_FILENAME, "r") as members_file:
@@ -42,7 +42,7 @@ def add_member(member_name: str, member_id: int) -> int:
         return -1
     with members_file_lock:
         with open(MEMBERS_FILENAME, 'a') as members_file:
-            members_file.write(f'{member_id};{member_name}\n')
+            members_file.write(f'{member_id};{member_name.lower()}\n')
     return 0
 
 def cache_members(client: discord.Client) -> int:

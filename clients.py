@@ -6,16 +6,25 @@ from cache import get_id, cache_members
 
 class ConsoleClient(discord.Client):
 
-    def __init__(self, channel_id):
-        self.__bot_channel_id = channel_id
-        super().__init__(intents=discord.Intents.default())
+    def __init__(self, guild_id: int, bot_channel_id: int):
+        self.__guild_id = guild_id
+        self.__bot_channel_id = bot_channel_id
+        self.__guild = None
         self.__bot_channel = None
+        super().__init__(intents=discord.Intents.default())
 
     async def on_ready(self):
         self.__bot_channel = self.get_channel(self.__bot_channel_id)
+
+        self.__guild = self.get_guild(self.__guild_id)
+        if self.__guild is None:
+            log("Received incorrect guild ID")
+            raise ValueError(f"Guild with ID {self.__guild_id} not found.")
+
         if self.__bot_channel is None:
             log("Received incorrect channel ID")
             raise ValueError(f"Channel with ID {self.__bot_channel_id} not found.")
+        
         log(f"Client logged in as {self.user.name}")
         await self.run_loop()
 
@@ -45,13 +54,12 @@ class ConsoleClient(discord.Client):
                 log("disconnect - Attempted to disconnect admin or other privileged member")
 
     async def give_role(self, role_name: str, user_name: str, color: int = 2303786):
-        guild = self.get_guild(JARRON_ID)
-        role_to_give = await guild.create_role(name=role_name, color=discord.Color(color))
+        role_to_give = await self.__guild.create_role(name=role_name, color=discord.Color(color))
         user_id = get_id(member_name=user_name)
         if user_id is None:
             log("role - Attempting to give role to non-cached user")
             return
-        user_to_give_role = await guild.fetch_member(user_id)
+        user_to_give_role = await self.__guild.fetch_member(user_id)
         if user_to_give_role is None:
             log("role - Attempting to give role to non-existant user existant in cache")
             return
