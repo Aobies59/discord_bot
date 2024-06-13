@@ -6,8 +6,8 @@ from utils import init_logs, log
 
 
 def read_token():
-    with open(TOKEN_FILENAME, "r") as TOKEN_file:
-        token = TOKEN_file.read()
+    with open(TOKEN_FILENAME, 'r') as token_file:
+        token = token_file.read()
     return token
 
 
