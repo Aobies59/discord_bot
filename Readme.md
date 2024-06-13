@@ -9,7 +9,6 @@ Pretty simple bot for testing purposes. It can be controlled from the terminal f
 - To clone this repository:
 ```bash
 git clone https://github.com/Aobies59/discord_bot
-cd discord_bot
 ```
 - A discord bot token, to be stored in *token.txt*
 - The id of the discord server the bot will run in, to be stored in `JARRON_ID` (don't ask why)
