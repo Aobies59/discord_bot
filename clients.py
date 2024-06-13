@@ -64,7 +64,7 @@ class ConsoleClient(discord.Client):
             log("role - Attempting to give role to non-existant user existant in cache")
             return
         await user_to_give_role.add_roles(role_to_give)
-        log(f'role - Gave role {role_name} to {user_name}')
+        log(f'role - Gave role "{role_name}" to {user_name}')
 
     async def run_loop(self) -> int:
         while True:
